@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # UniApply-AI
 
 UniApply-AI is an AI-native college admissions platform for India, built as a monorepo MVP covering a FastAPI backend, React + Vite web frontend, and scaffolding for desktop/mobile clients. The project follows the supplied RFP with five core modules: profile engine, document normalizer, cutoff matcher, assessment simulator, and decentralized allocation.
@@ -170,3 +171,6 @@ See [desktop/README.md](./desktop/README.md) for running the Electron client and
 The Render backend sets `APP_ENV=production`: it refuses to start without MongoDB, a non-default JWT secret of at least 32 characters, and an explicit HTTPS CORS origin. Its health endpoint returns HTTP 503 if MongoDB becomes unavailable. Public registration is student-only; a university account for dashboard review must be provisioned through a trusted administrative process.
 
 The local Ollama endpoint is not exposed or reachable from a hosted service. The profile-intake and admission-chat workflows require loopback Ollama and therefore remain unavailable unless Ollama runs beside the backend. Other supported hosted inference requires a server-side provider API key stored in the backend hosting environment or a separately hosted Ollama service reachable over a private network. Do not put provider credentials in web/mobile environment variables.
+=======
+# college-admission-portal
+>>>>>>> c9d1a0ca113132b6b94a230764cb5c5226f819a9
