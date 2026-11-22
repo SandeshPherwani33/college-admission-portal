@@ -1,0 +1,129 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+          cache: pip
+          cache-dependency-path: backend/requirements.txt
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: |
+            frontend/package-lock.json
+            mobile/package-lock.json
+
+      - name: Install Tesseract OCR
+        run: sudo apt-get update && sudo apt-get install -y --no-install-recommends tesseract-ocr
+
+      - name: Install backend dependencies
+        run: python -m pip install -r backend/requirements.txt
+
+      - name: Run backend tests with explicit demo storage
+        id: backend-tests
+        env:
+          APP_ENV: development
+          STORAGE_BACKEND: demo
+          MONGODB_URI: mongodb://127.0.0.1:1/uniapply_ci_guard
+          LLM_PROVIDER: demo
+          OPENAI_API_KEY: ""
+          RUN_OLLAMA_SMOKE: "0"
+          HTTP_PROXY: ""
+          HTTPS_PROXY: ""
+          ALL_PROXY: ""
+          NO_PROXY: "*"
+          http_proxy: ""
+          https_proxy: ""
+          all_proxy: ""
+          no_proxy: "*"
+          PYTHONPATH: ${{ github.workspace }}/backend
+        run: |
+          test_dir="$(mktemp -d "$RUNNER_TEMP/uniapply-pytest.XXXXXX")"
+          trap 'rm -rf "$test_dir"' EXIT
+          cd "$test_dir"
+          python -m pytest -q \
+            -c "$GITHUB_WORKSPACE/backend/pytest.ini" \
+            "$GITHUB_WORKSPACE/backend/tests"
+
+      - name: Install frontend dependencies
+        working-directory: frontend
+        run: npm ci --no-audit --no-fund
+
+      - name: Build frontend without project env files
+        id: frontend-build
+        working-directory: frontend
+        env:
+          VITE_API_BASE_URL: http://127.0.0.1:8000/api
+        run: |
+          empty_env_dir="$(mktemp -d "$RUNNER_TEMP/uniapply-vite-env.XXXXXX")"
+          trap 'rm -rf "$empty_env_dir"' EXIT
+          UNIAPPLY_VITE_ENV_DIR="$empty_env_dir" npm run build
+
+      - name: Install mobile dependencies
+        working-directory: mobile
+        run: npm ci --no-audit --no-fund
+
+      - name: Check mobile TypeScript
+        id: mobile-types
+        working-directory: mobile
+        run: npx tsc --noEmit
+
+      - name: Set up headless Chrome
+        id: chrome
+        uses: browser-actions/setup-chrome@v1
+        with:
+          chrome-version: stable
+
+      - name: Run Chrome student journey with isolated services
+        id: browser-journey
+        env:
+          CHROME_PATH: ${{ steps.chrome.outputs.chrome-path }}
+          PYTHON: python
+          RUN_OLLAMA_SMOKE: "0"
+          HTTP_PROXY: ""
+          HTTPS_PROXY: ""
+          ALL_PROXY: ""
+          NO_PROXY: "*"
+          http_proxy: ""
+          https_proxy: ""
+          all_proxy: ""
+          no_proxy: "*"
+        run: node frontend/tests/student-journey.mjs
+
+      - name: Summarize test outcomes
+        if: always()
+        env:
+          BACKEND_OUTCOME: ${{ steps.backend-tests.outcome }}
+          FRONTEND_OUTCOME: ${{ steps.frontend-build.outcome }}
+          MOBILE_OUTCOME: ${{ steps.mobile-types.outcome }}
+          BROWSER_OUTCOME: ${{ steps.browser-journey.outcome }}
+        run: |
+          {
+            echo "## CI checks"
+            echo ""
+            echo "| Check | Result |"
+            echo "| --- | --- |"
+            echo "| Backend tests | $BACKEND_OUTCOME |"
+            echo "| Frontend build | $FRONTEND_OUTCOME |"
+            echo "| Mobile TypeScript | $MOBILE_OUTCOME |"
+            echo "| Chrome student journey | $BROWSER_OUTCOME |"
+          } >> "$GITHUB_STEP_SUMMARY"

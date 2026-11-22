@@ -1,0 +1,13 @@
+{
+  "expo": {
+    "name": "UniApply-AI",
+    "slug": "uniapply-ai",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "platforms": ["ios", "android"],
+    "assetBundlePatterns": ["**/*"],
+    "scheme": "uniapply-ai",
+    "jsEngine": "hermes",
+    "plugins": ["expo-secure-store"]
+  }
+}

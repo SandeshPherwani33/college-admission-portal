@@ -1,0 +1,76 @@
+export type AppLanguage = 'en' | 'hi' | 'mr' | 'ta' | 'te' | 'kn' | 'bn' | 'gu';
+
+export const appLanguages: Array<{ value: AppLanguage; label: string }> = [
+  { value: 'en', label: 'English' },
+  { value: 'hi', label: 'हिन्दी' },
+  { value: 'mr', label: 'मराठी' },
+  { value: 'ta', label: 'தமிழ்' },
+  { value: 'te', label: 'తెలుగు' },
+  { value: 'kn', label: 'ಕನ್ನಡ' },
+  { value: 'bn', label: 'বাংলা' },
+  { value: 'gu', label: 'ગુજરાતી' },
+];
+
+const translations: Partial<Record<AppLanguage, Record<string, string>>> = {
+  en: {
+    overview: 'Overview',
+    profile: 'Profile & Documents',
+    eligibility: 'Eligibility',
+    applications: 'Applications',
+    explore: 'Explore & Apply',
+    predictor: 'AI College Predictor',
+    interview: 'Interview practice',
+    allocation: 'Allocation',
+    privacy: 'Privacy & data',
+    dashboard: 'Student dashboard',
+    welcome: 'Admissions overview',
+    continue: 'Continue',
+    systemStatus: 'System status',
+    demoBanner: 'Deterministic demo output is active. It is not model-generated.',
+    hideNotice: 'Dismiss notice',
+    openNavigation: 'Open navigation',
+    closeNavigation: 'Close navigation',
+  },
+  hi: {
+    overview: 'अवलोकन',
+    profile: 'प्रोफ़ाइल और दस्तावेज़',
+    eligibility: 'पात्रता',
+    applications: 'आवेदन',
+    explore: 'कॉलेज खोजें और आवेदन करें',
+    predictor: 'AI कॉलेज प्रिडिक्टर',
+    interview: 'इंटरव्यू अभ्यास',
+    allocation: 'आवंटन',
+    privacy: 'गोपनीयता और डेटा',
+    dashboard: 'छात्र डैशबोर्ड',
+    welcome: 'प्रवेश प्रक्रिया का अवलोकन',
+    continue: 'आगे बढ़ें',
+    systemStatus: 'सिस्टम स्थिति',
+    demoBanner: 'डेमो आउटपुट सक्रिय है। यह मॉडल द्वारा बनाया गया नहीं है।',
+    hideNotice: 'सूचना हटाएँ',
+    openNavigation: 'नेविगेशन खोलें',
+    closeNavigation: 'नेविगेशन बंद करें',
+  },
+  mr: {
+    overview: 'आढावा',
+    profile: 'प्रोफाइल आणि कागदपत्रे',
+    eligibility: 'पात्रता',
+    applications: 'अर्ज',
+    explore: 'महाविद्यालय शोधा आणि अर्ज करा',
+    predictor: 'AI कॉलेज प्रेडिक्टर',
+    interview: 'मुलाखत सराव',
+    allocation: 'वाटप',
+    privacy: 'गोपनीयता आणि डेटा',
+    dashboard: 'विद्यार्थी डॅशबोर्ड',
+    welcome: 'प्रवेश प्रक्रियेचा आढावा',
+    continue: 'पुढे जा',
+    systemStatus: 'सिस्टम स्थिती',
+    demoBanner: 'डेमो आउटपुट सक्रिय आहे. हे मॉडेलने तयार केलेले नाही.',
+    hideNotice: 'सूचना बंद करा',
+    openNavigation: 'नेव्हिगेशन उघडा',
+    closeNavigation: 'नेव्हिगेशन बंद करा',
+  },
+};
+
+export function translate(language: AppLanguage, key: string): string {
+  return translations[language]?.[key] ?? translations.en?.[key] ?? key;
+}

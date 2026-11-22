@@ -1,0 +1,16 @@
+type,name,description
+seat_type,State Level (S),Seats open to Maharashtra-domicile candidates statewide
+seat_type,Home University (H),Seats reserved for candidates from the college's home university region
+seat_type,Other Than Home University (O),Seats for Maharashtra candidates from other university regions
+seat_type,All India (AI),"Seats filled on JEE Main rank, open to candidates from all states"
+seat_type,Minority (MI),"Minority-institution seats, shown in a separate list"
+category,Open,Unreserved merit category
+category,SC / ST,Scheduled Caste / Scheduled Tribe
+category,VJ/DT,Vimukta Jati / Denotified Tribes
+category,NT (NT1/NT2/NT3),Nomadic Tribes groups
+category,OBC,Other Backward Classes
+category,EWS,Economically Weaker Section
+category,TFWS,Tuition Fee Waiver Scheme seats
+category,PwD / Defence / Orphan,Special reservations
+rule,Exam to seat flow,MHT CET percentile -> CAP merit list -> option form -> CAP rounds I to IV -> seat acceptance -> reporting
+rule,Cutoff output,"CET Cell publishes closing merit rank and percentile per college, branch, category and seat type after each round, separately for MH and AI seats"

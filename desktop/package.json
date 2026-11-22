@@ -1,0 +1,17 @@
+{
+  "name": "uniapply-ai-desktop",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Electron shell for UniApply-AI desktop client",
+  "main": "main/index.js",
+  "scripts": {
+    "start": "npm run dev",
+    "dev": "concurrently -k -n WEB,DESKTOP \"npm --prefix ../frontend run dev -- --host 127.0.0.1\" \"wait-on http://127.0.0.1:5173 && electron .\"",
+    "build": "npm --prefix ../frontend run build"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2",
+    "electron": "^45.3.3",
+    "wait-on": "^8.0.2"
+  }
+}

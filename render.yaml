@@ -1,0 +1,58 @@
+services:
+  - type: web
+    name: uniapply-ai-api
+    runtime: python
+    plan: starter
+    rootDir: backend
+    buildCommand: apt-get update && apt-get install -y --no-install-recommends tesseract-ocr && pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /api/health
+    disk:
+      name: uniapply-ai-documents
+      mountPath: /var/data/uniapply-documents
+      sizeGB: 1
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: PYTHON_VERSION
+        value: 3.12.8
+      - key: MONGODB_URI
+        sync: false
+      - key: MONGODB_DATABASE
+        value: uniapply_ai
+      - key: DOCUMENT_STORAGE_DIR
+        value: /var/data/uniapply-documents
+      - key: JWT_SECRET_KEY
+        generateValue: true
+      - key: STORAGE_BACKEND
+        value: auto
+      - key: CORS_ORIGINS
+        fromService:
+          type: web
+          name: uniapply-ai-web
+          property: host
+      - key: LLM_PROVIDER
+        value: demo
+      - key: LLM_MODEL
+        value: gpt-4o-mini
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: OPENAI_BASE_URL
+        sync: false
+      - key: LLM_TIMEOUT_SECONDS
+        value: "30"
+      - key: LLM_MAX_RETRIES
+        value: "2"
+
+  - type: web
+    name: uniapply-ai-web
+    runtime: static
+    rootDir: frontend
+    buildCommand: npm ci && npm run build
+    staticPublishPath: dist
+    envVars:
+      - key: VITE_API_BASE_URL
+        fromService:
+          type: web
+          name: uniapply-ai-api
+          property: host

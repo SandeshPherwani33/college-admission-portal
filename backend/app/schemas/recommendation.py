@@ -1,0 +1,3 @@
+from .eligibility import ProgramEligibilityResponse
+
+RecommendationResponse = ProgramEligibilityResponse

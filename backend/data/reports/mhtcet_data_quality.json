@@ -1,0 +1,407 @@
+{
+  "datasets": {
+    "reference": {
+      "file": "mhcap_reference.csv",
+      "rows_read": 15,
+      "rows_after_exact_duplicate_removal": 15,
+      "exact_duplicate_rows": 0,
+      "normalized_value_types": {
+        "type": "string|null",
+        "name": "string|null",
+        "description": "string|null"
+      },
+      "columns": [
+        {
+          "original": "type",
+          "normalized": "type"
+        },
+        {
+          "original": "name",
+          "normalized": "name"
+        },
+        {
+          "original": "description",
+          "normalized": "description"
+        }
+      ],
+      "missing_values_by_column": {
+        "type": 0,
+        "name": 0,
+        "description": 0
+      }
+    },
+    "colleges": {
+      "file": "maharashtra_colleges_mhtcet.csv",
+      "rows_read": 35,
+      "rows_after_exact_duplicate_removal": 35,
+      "exact_duplicate_rows": 0,
+      "normalized_value_types": {
+        "institute_name": "string|null",
+        "short_name": "string|null",
+        "city": "string|null",
+        "source_note": "string|null"
+      },
+      "columns": [
+        {
+          "original": "institute_name",
+          "normalized": "institute_name"
+        },
+        {
+          "original": "short_name",
+          "normalized": "short_name"
+        },
+        {
+          "original": "city",
+          "normalized": "city"
+        },
+        {
+          "original": "source_note",
+          "normalized": "source_note"
+        }
+      ],
+      "missing_values_by_column": {
+        "institute_name": 0,
+        "short_name": 0,
+        "city": 0,
+        "source_note": 0
+      }
+    },
+    "cutoffs": {
+      "file": "mhtcet_2026_cutoffs_partial.csv",
+      "rows_read": 134,
+      "rows_after_exact_duplicate_removal": 134,
+      "exact_duplicate_rows": 0,
+      "normalized_value_types": {
+        "year": "integer|null",
+        "cap_round": "integer|null",
+        "seat_level": "string|null",
+        "institute": "string|null",
+        "branch": "string|null",
+        "category": "string|null",
+        "closing_rank": "integer|null",
+        "source_url": "string|null",
+        "data_quality": "string|null"
+      },
+      "columns": [
+        {
+          "original": "year",
+          "normalized": "year"
+        },
+        {
+          "original": "cap_round",
+          "normalized": "cap_round"
+        },
+        {
+          "original": "seat_level",
+          "normalized": "seat_level"
+        },
+        {
+          "original": "institute",
+          "normalized": "institute"
+        },
+        {
+          "original": "branch",
+          "normalized": "branch"
+        },
+        {
+          "original": "category",
+          "normalized": "category"
+        },
+        {
+          "original": "closing_rank",
+          "normalized": "closing_rank"
+        },
+        {
+          "original": "source_url",
+          "normalized": "source_url"
+        },
+        {
+          "original": "data_quality",
+          "normalized": "data_quality"
+        }
+      ],
+      "missing_values_by_column": {
+        "year": 0,
+        "cap_round": 0,
+        "seat_level": 0,
+        "institute": 0,
+        "branch": 0,
+        "category": 0,
+        "closing_rank": 0,
+        "source_url": 0,
+        "data_quality": 0
+      }
+    },
+    "college_directory": {
+      "file": "Indian_Engineering_Colleges_Dataset.csv",
+      "rows_read": 732,
+      "rows_after_exact_duplicate_removal": 732,
+      "exact_duplicate_rows": 0,
+      "normalized_value_types": {
+        "source_row_id": "string|null",
+        "college_name": "string|null",
+        "state": "string|null",
+        "ug_fee": "string|null",
+        "pg_fee": "string|null",
+        "rating": "number|null",
+        "academic": "number|null",
+        "accommodation": "number|null",
+        "faculty": "number|null",
+        "infrastructure": "number|null",
+        "placement": "number|null",
+        "social_life": "number|null"
+      },
+      "columns": [
+        {
+          "original": "",
+          "normalized": "source_row_id"
+        },
+        {
+          "original": "College_Name",
+          "normalized": "college_name"
+        },
+        {
+          "original": "State",
+          "normalized": "state"
+        },
+        {
+          "original": "UG_fee",
+          "normalized": "ug_fee"
+        },
+        {
+          "original": "PG_fee",
+          "normalized": "pg_fee"
+        },
+        {
+          "original": "Rating",
+          "normalized": "rating"
+        },
+        {
+          "original": "Academic",
+          "normalized": "academic"
+        },
+        {
+          "original": "Accommodation",
+          "normalized": "accommodation"
+        },
+        {
+          "original": "Faculty",
+          "normalized": "faculty"
+        },
+        {
+          "original": "Infrastructure",
+          "normalized": "infrastructure"
+        },
+        {
+          "original": "Placement",
+          "normalized": "placement"
+        },
+        {
+          "original": "Social_Life",
+          "normalized": "social_life"
+        }
+      ],
+      "missing_values_by_column": {
+        "source_row_id": 0,
+        "college_name": 0,
+        "state": 0,
+        "ug_fee": 0,
+        "pg_fee": 0,
+        "rating": 0,
+        "academic": 0,
+        "accommodation": 0,
+        "faculty": 0,
+        "infrastructure": 0,
+        "placement": 0,
+        "social_life": 0
+      }
+    }
+  },
+  "cutoffs": {
+    "processed_rows": 134,
+    "years": [
+      2026
+    ],
+    "cap_rounds": [
+      3,
+      4
+    ],
+    "seat_levels": [
+      "All India",
+      "State"
+    ],
+    "categories": [
+      "General/Open"
+    ],
+    "data_quality_labels": [
+      "secondary_unverified"
+    ],
+    "unique_institutes": 25,
+    "unique_branches": 35,
+    "closing_rank": {
+      "valid_count": 134,
+      "malformed_or_missing_rows": [],
+      "minimum": 633,
+      "median": 30114.0,
+      "maximum": 233628
+    },
+    "malformed_or_missing_year_rows": [],
+    "malformed_or_missing_cap_round_rows": [],
+    "duplicate_comparison_keys": 0,
+    "source_urls": [
+      "https://engineering.careers360.com/articles/mht-cet-2026-round-4-cutoff-college-wise-closing-ranks"
+    ],
+    "city_mapped_rows": 134,
+    "unmatched_institutes": []
+  },
+  "college_reference": {
+    "processed_rows": 35,
+    "unique_cities": [
+      "Amravati",
+      "Buldana",
+      "Buldhana",
+      "Jalgaon",
+      "Jalna",
+      "Mumbai",
+      "Pune",
+      "Pusad",
+      "Sangli",
+      "Shegaon",
+      "Yavatmal"
+    ],
+    "note": "The supplied college list is a partial reference list, not a complete CAP institute directory."
+  },
+  "college_directory": {
+    "processed_rows": 732,
+    "unique_college_names": 630,
+    "states": [
+      "Andaman",
+      "Andhra pradesh",
+      "Arunachal pradesh",
+      "Assam",
+      "Bihar",
+      "Chandigarh",
+      "Chhattisgarh",
+      "Dadra",
+      "Daman",
+      "Delhi ncr",
+      "Goa",
+      "Gujarat",
+      "Haryana",
+      "Himachal pradesh",
+      "Jammu",
+      "Jharkhand",
+      "Karnataka",
+      "Kerala",
+      "Madhya pradesh",
+      "Maharashtra",
+      "Manipur",
+      "Meghalaya",
+      "Mizoram",
+      "Nagaland",
+      "Orissa",
+      "Puducherry",
+      "Punjab",
+      "Rajasthan",
+      "Sikkim",
+      "Tamil nadu",
+      "Telangana",
+      "Tripura",
+      "Uttar pradesh",
+      "Uttarakhand",
+      "West bengal"
+    ],
+    "note": "All uploaded rows are retained, including repeated college names. The source provides no course, city, application-link, fee-currency, or fee-period details."
+  },
+  "reference_values": {
+    "seat_types": [
+      {
+        "type": "seat_type",
+        "name": "State Level (S)",
+        "description": "Seats open to Maharashtra-domicile candidates statewide"
+      },
+      {
+        "type": "seat_type",
+        "name": "Home University (H)",
+        "description": "Seats reserved for candidates from the college's home university region"
+      },
+      {
+        "type": "seat_type",
+        "name": "Other Than Home University (O)",
+        "description": "Seats for Maharashtra candidates from other university regions"
+      },
+      {
+        "type": "seat_type",
+        "name": "All India (AI)",
+        "description": "Seats filled on JEE Main rank, open to candidates from all states"
+      },
+      {
+        "type": "seat_type",
+        "name": "Minority (MI)",
+        "description": "Minority-institution seats, shown in a separate list"
+      }
+    ],
+    "categories": [
+      {
+        "type": "category",
+        "name": "Open",
+        "description": "Unreserved merit category"
+      },
+      {
+        "type": "category",
+        "name": "SC / ST",
+        "description": "Scheduled Caste / Scheduled Tribe"
+      },
+      {
+        "type": "category",
+        "name": "VJ/DT",
+        "description": "Vimukta Jati / Denotified Tribes"
+      },
+      {
+        "type": "category",
+        "name": "NT (NT1/NT2/NT3)",
+        "description": "Nomadic Tribes groups"
+      },
+      {
+        "type": "category",
+        "name": "OBC",
+        "description": "Other Backward Classes"
+      },
+      {
+        "type": "category",
+        "name": "EWS",
+        "description": "Economically Weaker Section"
+      },
+      {
+        "type": "category",
+        "name": "TFWS",
+        "description": "Tuition Fee Waiver Scheme seats"
+      },
+      {
+        "type": "category",
+        "name": "PwD / Defence / Orphan",
+        "description": "Special reservations"
+      }
+    ],
+    "rules": [
+      {
+        "type": "rule",
+        "name": "Exam to seat flow",
+        "description": "MHT CET percentile -> CAP merit list -> option form -> CAP rounds I to IV -> seat acceptance -> reporting"
+      },
+      {
+        "type": "rule",
+        "name": "Cutoff output",
+        "description": "CET Cell publishes closing merit rank and percentile per college, branch, category and seat type after each round, separately for MH and AI seats"
+      }
+    ],
+    "note": "Reference seat codes are preserved as supplied and are not mapped to cutoff seat_level values."
+  },
+  "limitations": [
+    "Cutoff rows are partial 2026 secondary_unverified data for CAP rounds 3 and 4.",
+    "Only General/Open category is present in the cutoff dataset.",
+    "The supplied reference identifies All India seats as JEE Main based; they are not compared with MHT-CET ranks.",
+    "College and branch names are normalized for lookup only; original displayed names are preserved and aliases are not merged.",
+    "No percentile-to-rank conversion or admission probability is produced."
+  ]
+}
